@@ -1514,6 +1514,14 @@ function run_beautifier_tests(test_obj, Urlencoded, js_beautify, html_beautify, 
             '    </div>',
             '<div>\n' +
             '</div>');
+        bth('<div>\n' +
+            '</div>\n' +
+            '    <div>\n' +
+            '    </div>',
+            '<div>\n' +
+            '</div>\n' +
+            '<div>\n' +
+            '</div>');
         bth('    <div>\n' +
             '</div>',
             '<div>\n' +
@@ -1548,6 +1556,23 @@ function run_beautifier_tests(test_obj, Urlencoded, js_beautify, html_beautify, 
             '<li>\n' +
             '    content\n' +
             '</li>');
+
+        bth('<img>content');
+        bth('<img> content');
+        bth('<img>   content', '<img> content');
+
+        bth('<img><img>content');
+        bth('<img> <img>content');
+        bth('<img>   <img>content', '<img> <img>content');
+
+        bth('<img><b>content</b>');
+        bth('<img> <b>content</b>');
+        bth('<img>   <b>content</b>', '<img> <b>content</b>');
+
+        bth('<div>content<img>content</div>');
+        bth('<div> content <img> content</div>');
+        bth('<div>    content <img>    content </div>',
+            '<div> content <img> content </div>');
 
         // Tests that don't pass, but probably should.
         // bth('<div><span>content</span></div>');
@@ -1712,7 +1737,7 @@ function run_beautifier_tests(test_obj, Urlencoded, js_beautify, html_beautify, 
             '<div>Some test text that should wrap_inside_this\n' +
             '    section here.</div>');
 
-       opts.wrap_line_length = "40";
+        opts.wrap_line_length = "40";
         //...---------1---------2---------3---------4---------5---------6---------7
         //...1234567890123456789012345678901234567890123456789012345678901234567890
         bth('<div>Some test text that should wrap_inside_this section here.</div>',
